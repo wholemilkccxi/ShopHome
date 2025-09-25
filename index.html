@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wholemilk – Fresh Dairy & More</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>Wholemilk</h1>
+    <nav>
+      <a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <main id="product-grid"></main>
+
+  <script src="assets/js/catalog.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script>
+    // Load products and render them
+    fetch('data/products.json')
+      .then(r => r.json())
+      .then(renderProducts);
+
+    function renderProducts(list) {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = list.map(p => `
+        <article class="product-card">
+          <img src="${p.image}" alt="${p.name}">
+          <h2>${p.name}</h2>
+          <p class="price">$${p.price.toFixed(2)}</p>
+          <p class="desc">${p.shortDesc}</p>
+          <button onclick="addToCart('${p.id}')">Add to Cart</button>
+        </article>
+      `).join('');
+    }
+  </script>
+</body>
+</html>
