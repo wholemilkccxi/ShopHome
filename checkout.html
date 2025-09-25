@@ -1,0 +1,13 @@
+<form id="checkout-form">
+  <label>Name <input type="text" name="name" required></label>
+  <label>Email <input type="email" name="email" required></label>
+  <label>Address <textarea name="address" required></textarea></label>
+
+  <!-- If you use Stripe Checkout, replace the button with a script tag -->
+  <button type="submit">Place Order</button>
+</form>
+
+<script src="assets/js/checkout.js"></script>
+<script>
+  document.getElementById('checkout-form').addEventListener('submit', submitOrder);
+</script>
